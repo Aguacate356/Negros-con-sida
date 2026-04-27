@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard · Precios Históricos de Gasolina</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-left">
+      <h1>Precios históricos de gasolina</h1>
+      <p>Nuevo León · 2020 – 2024 · 10 municipios · 600 registros</p>
+    </div>
+    <span class="badge">Magna · Premium · Diésel</span>
+  </header>
+
+  <main class="main">
+
+    <!-- KPIs -->
+    <section class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-label">Magna prom.</div>
+        <div class="kpi-value">$21.06</div>
+        <div class="kpi-sub">promedio histórico</div>
+        <span class="kpi-badge up">+31.6% desde 2020</span>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Premium prom.</div>
+        <div class="kpi-value">$22.75</div>
+        <div class="kpi-sub">promedio histórico</div>
+        <span class="kpi-badge up">+34.8% desde 2020</span>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Diésel prom.</div>
+        <div class="kpi-value">$22.75</div>
+        <div class="kpi-sub">promedio histórico</div>
+        <span class="kpi-badge up">+28.1% desde 2020</span>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Precio crudo prom.</div>
+        <div class="kpi-value">$1,289</div>
+        <div class="kpi-sub">MXN por barril</div>
+        <span class="kpi-badge warn">pico 2022: $1,706</span>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Mín. magna hist.</div>
+        <div class="kpi-value">$12.91</div>
+        <div class="kpi-sub">Abr 2020 (pandemia)</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Máx. magna hist.</div>
+        <div class="kpi-value">$25.64</div>
+        <div class="kpi-sub">2024</div>
+      </div>
+    </section>
+
+    <!-- Sección: Tendencias -->
+    <h2 class="section-label">Tendencias y comparativas</h2>
+
+    <div class="charts-grid">
+
+      <!-- Evolución anual -->
+      <div class="chart-card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Evolución anual</div>
+            <div class="card-sub">Precio promedio por tipo de combustible</div>
+          </div>
+          <ul class="legend">
+            <li><span class="leg-dot color-blue"></span>Magna</li>
+            <li><span class="leg-dot color-green"></span>Premium</li>
+            <li><span class="leg-dot color-amber"></span>Diésel</li>
+          </ul>
+        </div>
+        <div class="chart-area">
+          <canvas id="chartAnual" role="img" aria-label="Evolución anual de precios por tipo de combustible 2020-2024">Magna: 17.93, 20.08, 21.57, 22.13, 23.59. Premium: 18.72, 21.72, 23.69, 24.37, 25.24. Diésel: 19.72, 21.54, 23.31, 23.93, 25.27.</canvas>
+        </div>
+      </div>
+
+      <!-- Crudo vs Magna -->
+      <div class="chart-card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Precio crudo vs magna</div>
+            <div class="card-sub">Correlación anual (MXN/barril · precio al público)</div>
+          </div>
+        </div>
+        <ul class="stats-row">
+          <li class="stat">
+            <span class="stat-value">$702</span>
+            <span class="stat-label">Crudo 2020</span>
+          </li>
+          <li class="stat">
+            <span class="stat-value">$1,706</span>
+            <span class="stat-label">Crudo 2022</span>
+          </li>
+          <li class="stat">
+            <span class="stat-value">$1,375</span>
+            <span class="stat-label">Crudo 2024</span>
+          </li>
+        </ul>
+        <div class="chart-area chart-area--short">
+          <canvas id="chartCrudo" role="img" aria-label="Precio del crudo vs precio magna por año">Crudo: 702, 1242, 1706, 1416, 1375. Magna: 17.93, 20.08, 21.57, 22.13, 23.59.</canvas>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Tendencia mensual -->
+    <div class="charts-grid charts-grid--full">
+      <div class="chart-card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Tendencia mensual · Magna</div>
+            <div class="card-sub">Precio promedio mensual en los 10 municipios</div>
+          </div>
+          <div class="filter-row">
+            <span class="filter-label">Año</span>
+            <button class="fbtn active" onclick="setYear('todos', this)">Todos</button>
+            <button class="fbtn" onclick="setYear(2020, this)">2020</button>
+            <button class="fbtn" onclick="setYear(2021, this)">2021</button>
+            <button class="fbtn" onclick="setYear(2022, this)">2022</button>
+            <button class="fbtn" onclick="setYear(2023, this)">2023</button>
+            <button class="fbtn" onclick="setYear(2024, this)">2024</button>
+          </div>
+        </div>
+        <div class="chart-area">
+          <canvas id="chartMensual" role="img" aria-label="Tendencia mensual de precio magna">Línea de precio magna mensual 2020-2024.</canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección: Municipios -->
+    <h2 class="section-label">Comparativa por municipio</h2>
+
+    <div class="charts-grid">
+
+      <!-- Por municipio -->
+      <div class="chart-card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Precio por municipio</div>
+            <div class="card-sub">Promedio histórico 2020–2024</div>
+          </div>
+          <ul class="legend">
+            <li><span class="leg-dot color-blue"></span>Magna</li>
+            <li><span class="leg-dot color-green"></span>Premium</li>
+            <li><span class="leg-dot color-amber"></span>Diésel</li>
+          </ul>
+        </div>
+        <div class="chart-area chart-area--tall">
+          <canvas id="chartMun" role="img" aria-label="Precio por municipio comparando magna, premium y diésel">Comparativa de precios por municipio en Nuevo León.</canvas>
+        </div>
+      </div>
+
+      <!-- IEPS -->
+      <div class="chart-card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Distribución IEPS</div>
+            <div class="card-sub">Impuesto especial por tipo de combustible</div>
+          </div>
+        </div>
+        <ul class="stats-row">
+          <li class="stat">
+            <span class="stat-value">$4.95</span>
+            <span class="stat-label">IEPS Regular</span>
+          </li>
+          <li class="stat">
+            <span class="stat-value">$4.18</span>
+            <span class="stat-label">IEPS Premium</span>
+          </li>
+          <li class="stat">
+            <span class="stat-value">$5.44</span>
+            <span class="stat-label">IEPS Diésel</span>
+          </li>
+        </ul>
+        <div class="chart-area chart-area--medium">
+          <canvas id="chartIEPS" role="img" aria-label="Comparativa de IEPS por tipo de combustible">Donut mostrando IEPS por combustible: Regular $4.95, Premium $4.18, Diésel $5.44.</canvas>
+        </div>
+        <ul class="legend legend--centered">
+          <li><span class="leg-dot color-blue"></span>IEPS Magna</li>
+          <li><span class="leg-dot color-green"></span>IEPS Premium</li>
+          <li><span class="leg-dot color-amber"></span>IEPS Diésel</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+    const YEARS = [2020, 2021, 2022, 2023, 2024];
+    const MONTHS = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+    const MUNICIPIOS = ['Apodaca','Aramberri','Galeana','García','Gral. Escobedo','Guadalupe','Juárez','Montemorelos','Monterrey','Sta. Catarina'];
+
+    const DATA_YEAR = {
+      magna:   [17.93, 20.08, 21.57, 22.13, 23.59],
+      premium: [18.72, 21.72, 23.69, 24.37, 25.24],
+      diesel:  [19.72, 21.54, 23.31, 23.93, 25.27],
+      crudo:   [702.83, 1242.33, 1706.41, 1416.12, 1375.39]
+    };
+
+    const DATA_MONTHLY = {
+      2020: [19.48, 19.39, 17.81, 15.05, 16.21, 17.65, 18.58, 18.58, 18.55, 18.38, 17.70, 17.85],
+      2021: [18.93, 19.78, 20.11, 20.16, 20.21, 20.23, 20.25, 20.29, 20.24, 20.23, 20.15, 20.35],
+      2022: [20.67, 20.86, 21.30, 21.54, 21.73, 21.84, 21.86, 21.94, 21.77, 21.94, 21.82, 21.59],
+      2023: [21.78, 21.80, 21.89, 22.00, 21.98, 22.06, 22.16, 22.39, 22.49, 22.42, 22.40, 22.22],
+      2024: [22.36, 22.94, 23.14, 23.38, 23.48, 23.60, 23.90, 24.07, 24.01, 23.99, 24.04, 24.16]
+    };
+
+    const DATA_MUN = {
+      magna:   [20.55, 21.39, 20.98, 19.61, 21.14, 21.58, 22.04, 21.02, 21.08, 21.22],
+      premium: [22.25, 23.29, 22.83, 21.03, 22.78, 23.46, 23.14, 23.34, 22.99, 22.39],
+      diesel:  [21.78, 23.10, 22.79, 22.19, 22.83, 23.34, 23.43, 22.56, 22.68, 22.85]
+    };
+
+    const COLOR_BLUE  = '#4a9eff';
+    const COLOR_GREEN = '#3dd68c';
+    const COLOR_AMBER = '#f5a623';
+
+    const baseOpts = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ' $' + ctx.raw.toFixed(2) } }
+      },
+      scales: {
+        x: { ticks: { font: { size: 11 } } },
+        y: { ticks: { font: { size: 11 }, callback: v => '$' + v.toFixed(0) } }
+      }
+    };
+
+    new Chart(document.getElementById('chartAnual'), {
+      type: 'line',
+      data: {
+        labels: YEARS,
+        datasets: [
+          { label: 'Magna',   data: DATA_YEAR.magna,   borderColor: COLOR_BLUE,  backgroundColor: 'rgba(74,158,255,0.07)',  tension: 0.4, pointRadius: 5, fill: true },
+          { label: 'Premium', data: DATA_YEAR.premium, borderColor: COLOR_GREEN, backgroundColor: 'rgba(61,214,140,0.05)',  tension: 0.4, pointRadius: 5, fill: true, borderDash: [6,3] },
+          { label: 'Diésel',  data: DATA_YEAR.diesel,  borderColor: COLOR_AMBER, backgroundColor: 'rgba(245,166,35,0.05)', tension: 0.4, pointRadius: 5, fill: true, borderDash: [2,4] }
+        ]
+      },
+      options: baseOpts
+    });
+
+    new Chart(document.getElementById('chartCrudo'), {
+      type: 'bar',
+      data: {
+        labels: YEARS,
+        datasets: [
+          { label: 'Precio crudo', data: DATA_YEAR.crudo, backgroundColor: 'rgba(245,166,35,0.3)', borderColor: COLOR_AMBER, borderWidth: 1, yAxisID: 'y',  order: 2 },
+          { label: 'Magna',        data: DATA_YEAR.magna, type: 'line', borderColor: COLOR_BLUE, borderWidth: 2, pointRadius: 4, tension: 0.3, yAxisID: 'y2', order: 1 }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x:  { ticks: { font: { size: 11 } } },
+          y:  { position: 'left',  ticks: { font: { size: 10 }, callback: v => '$' + Math.round(v) }, title: { display: true, text: 'Crudo MXN', font: { size: 10 } } },
+          y2: { position: 'right', grid: { drawOnChartArea: false }, ticks: { font: { size: 10 }, callback: v => '$' + v.toFixed(1) }, title: { display: true, text: 'Magna MXN', font: { size: 10 } } }
+        }
+      }
+    });
+
+    let chartMensual = null;
+    function buildMonthly(year) {
+      const labels = year === 'todos'
+        ? YEARS.flatMap(y => MONTHS.map(m => m + ' ' + String(y).slice(2)))
+        : MONTHS;
+      const data = year === 'todos'
+        ? YEARS.flatMap(y => DATA_MONTHLY[y])
+        : DATA_MONTHLY[year];
+      if (chartMensual) chartMensual.destroy();
+      chartMensual = new Chart(document.getElementById('chartMensual'), {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [{ label: 'Magna', data, borderColor: COLOR_BLUE, backgroundColor: 'rgba(74,158,255,0.08)', tension: 0.35, pointRadius: year === 'todos' ? 2 : 4, fill: true }]
+        },
+        options: {
+          ...baseOpts,
+          scales: {
+            x: { ticks: { font: { size: 10 }, maxRotation: 45, autoSkip: year === 'todos' } },
+            y: { ticks: { font: { size: 11 }, callback: v => '$' + v.toFixed(2) } }
+          }
+        }
+      });
+    }
+    buildMonthly('todos');
+
+    function setYear(y, btn) {
+      document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      buildMonthly(y);
+    }
+
+    new Chart(document.getElementById('chartMun'), {
+      type: 'bar',
+      data: {
+        labels: MUNICIPIOS,
+        datasets: [
+          { label: 'Magna',   data: DATA_MUN.magna,   backgroundColor: 'rgba(74,158,255,0.7)',  borderRadius: 3 },
+          { label: 'Premium', data: DATA_MUN.premium, backgroundColor: 'rgba(61,214,140,0.6)',  borderRadius: 3 },
+          { label: 'Diésel',  data: DATA_MUN.diesel,  backgroundColor: 'rgba(245,166,35,0.6)', borderRadius: 3 }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { min: 18, ticks: { font: { size: 11 }, callback: v => '$' + v.toFixed(0) } },
+          y: { ticks: { font: { size: 11 } } }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chartIEPS'), {
+      type: 'doughnut',
+      data: {
+        labels: ['IEPS Magna', 'IEPS Premium', 'IEPS Diésel'],
+        datasets: [{
+          data: [4.95, 4.18, 5.44],
+          backgroundColor: ['rgba(74,158,255,0.8)', 'rgba(61,214,140,0.8)', 'rgba(245,166,35,0.8)'],
+          borderColor: [COLOR_BLUE, COLOR_GREEN, COLOR_AMBER],
+          borderWidth: 1,
+          hoverOffset: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '65%',
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: ctx => ' $' + ctx.raw.toFixed(2) + ' por litro' } }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
