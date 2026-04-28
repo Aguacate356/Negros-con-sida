@@ -2,7 +2,11 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import PrediccionGasolina
 
-idGas, ano, mes, tipo = ''
+idGas= '' 
+ano = '' 
+mes = '' 
+tipo = ''
+
 consultaValida = 0
 app = Flask(__name__)
 CORS(app)
@@ -12,10 +16,11 @@ CORS(app)
 def getUserData():
     idGas = int(request.args.get('id_gas'))
     ano = int(request.args.get('ano'))
-    mes = int(request.arg.get('mes'))
-    tipo = request.arg.get('tipo').lower()
+    mes = int(request.args.get('mes'))
+    tipo = request.args.get('tipo').lower()
     try:
         if tipo == "regular":
+            
             p5,p50,p95 =  PrediccionGasolina.simulacionesMonteCarloReg(idGas, ano, mes)
             consultaValida = 1
         elif tipo == "premium":
@@ -36,7 +41,7 @@ def getUserData():
             })
         
     except Exception as e:
-        return jsonify({"error": str(e)}), 500 
+         return jsonify({"error": f"Error en el servidor: {str(e)}"}), 500
 
 
 if __name__ == '__main__':
