@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estimación de precios · Gasolina NL</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-left">
+      <h1>Estimación de precios</h1>
+      <p>Nuevo León · Modelo predictivo por municipio</p>
+    </div>
+    <div class="header-right">
+      <span class="badge">Magna · Premium · Diésel</span>
+      <a class="nav-btn" href="dashboard.html">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Dashboard
+      </a>
+    </div>
+  </header>
+
+  <main class="main">
+    <h2 class="section-label">Parámetros de estimación</h2>
+
+    <div class="est-panel">
+      <div class="est-body" style="border-radius: var(--radius-lg); border-top: 1px solid var(--border);">
+
+        <div class="est-row">
+          <div class="est-field">
+            <label>Municipio</label>
+            <select id="municipio" onchange="updateID()">
+              <option value="">Ninguno</option>
+              <option>Apodaca</option>
+              <option>Aramberri</option>
+              <option>Galeana</option>
+              <option>Garcia</option>
+              <option>General Escobedo</option>
+              <option>Guadalupe</option>
+              <option>Juarez</option>
+              <option>Montemorelos</option>
+              <option>Monterrey</option>
+              <option>Santa Catarina</option>
+            </select>
+          </div>
+          <div class="est-field">
+            <label>ID Gasolinera</label>
+            <select id="idGas" disabled>
+              <option value="">—</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="est-row">
+          <div class="est-field">
+            <label>Tipo de gasolina</label>
+            <select id="tipoGas">
+              <option value="">Ninguno</option>
+              <option>Regular</option>
+              <option>Premium</option>
+              <option>Diesel</option>
+            </select>
+          </div>
+          <div class="est-row" style="margin:0; gap:12px;">
+            <div class="est-field">
+              <label>Mes</label>
+              <select id="mes">
+                <option value="">Ninguno</option>
+                <option>1</option><option>2</option><option>3</option>
+                <option>4</option><option>5</option><option>6</option>
+                <option>7</option><option>8</option><option>9</option>
+                <option>10</option><option>11</option><option>12</option>
+              </select>
+            </div>
+            <div class="est-field">
+              <label>Año</label>
+              <select id="year">
+                <option value="">Ninguno</option>
+                <option>2025</option><option>2026</option><option>2027</option>
+                <option>2028</option><option>2029</option><option>2030</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div id="errMsg" class="est-err"></div>
+
+        <button class="est-btn" onclick="estimar()">Estimar precio</button>
+
+        <div id="resultCard" class="est-result">
+          <div class="est-result-title">El precio será:</div>
+          <div id="resultInfo" class="est-result-info"></div>
+          <div class="est-prices">
+            <div class="est-price-item">
+              <div class="est-price-label">Optimista (P5)</div>
+              <div class="est-price-val" id="p5">—</div>
+            </div>
+            <div class="est-price-item">
+              <div class="est-price-label">Realista (P50)</div>
+              <div class="est-price-val" id="p50">—</div>
+            </div>
+            <div class="est-price-item">
+              <div class="est-price-label">Pesimista (P95)</div>
+              <div class="est-price-val" id="p95">—</div>
+            </div>
+          </div>
+          <div class="est-cmd-box">
+            <div class="est-cmd-label">Comando generado — ejecutar en CMD:</div>
+            <div class="est-cmd-text" id="cmdText"></div>
+            <button class="est-copy-btn" onclick="copiarCmd()">Copiar comando</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="Scrip.js" >
+
+  </script>
+
+</body>
+</html>

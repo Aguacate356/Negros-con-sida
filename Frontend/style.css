@@ -372,3 +372,256 @@ body {
     grid-template-columns: 1fr;
   }
 }
+/* ============================================================
+   NAV BUTTON (header)
+   ============================================================ */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(74, 158, 255, 0.4);
+  background: rgba(74, 158, 255, 0.1);
+  color: var(--color-blue);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.nav-btn:hover {
+  background: rgba(74, 158, 255, 0.2);
+  border-color: rgba(74, 158, 255, 0.7);
+}
+
+.nav-btn svg {
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   ESTIMACIÓN DE PRECIOS PANEL
+   ============================================================ */
+.est-panel {
+  max-width: 640px;
+  margin: 0 auto;
+  font-family: var(--font-display);
+}
+
+.est-header {
+  background: #1e2d4f;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: 28px 40px;
+  border: 1px solid rgba(74, 158, 255, 0.2);
+  border-bottom: none;
+}
+
+.est-header h1 {
+  color: var(--text);
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.est-body {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  padding: 28px 40px 32px;
+}
+
+.est-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.est-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.est-field label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.est-field select {
+  font-family: var(--font-display);
+  font-size: 13px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface2);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.15s;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237b7f8e' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 30px;
+}
+
+.est-field select:hover {
+  border-color: var(--border-hover);
+}
+
+.est-field select:focus {
+  outline: none;
+  border-color: rgba(74, 158, 255, 0.5);
+}
+
+.est-btn {
+  background: #1e2d4f;
+  color: var(--color-blue);
+  border: 1px solid rgba(74, 158, 255, 0.4);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 13px 32px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 8px;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.est-btn:hover {
+  background: rgba(74, 158, 255, 0.15);
+  border-color: rgba(74, 158, 255, 0.7);
+}
+
+.est-btn:active {
+  transform: scale(0.98);
+}
+
+.est-result {
+  background: var(--surface2);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  padding: 16px 20px;
+  margin-top: 20px;
+  display: none;
+}
+
+.est-result-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.est-result-info {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.est-prices {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.est-price-item {
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  padding: 12px;
+  text-align: center;
+}
+
+.est-price-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.est-price-val {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.est-cmd-box {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  margin-top: 16px;
+}
+
+.est-cmd-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.est-cmd-text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-blue);
+  word-break: break-all;
+  line-height: 1.6;
+}
+
+.est-copy-btn {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  margin-top: 8px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.est-copy-btn:hover {
+  border-color: var(--border-hover);
+  color: var(--text);
+}
+
+.est-err {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-red);
+  margin-top: 8px;
+  display: none;
+}
