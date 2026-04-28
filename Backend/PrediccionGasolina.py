@@ -6,7 +6,7 @@ import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from random import sample
 import numpy as np
-
+import os
 #Variables globales
 contadorMagna = 0
 contadorPrem = 0
@@ -20,13 +20,14 @@ columnaMagna = None
 columnaPremium = None
 columnaDiesel = None
 
+base_dir = os.path.dirname(os.path.abspath(__file__))
+rutaArchivo = os.path.join(base_dir, "..", "DataBase", "DatosHistoricoGasolina.xlsx")
 
 #================================================================================================================
 
 
 def simulacionesMonteCarloReg(idGasolinera, ano, mes):
-    global contadorMagna, columnaMagna
-    rutaArchivo = "C:\\Users\\q\\Documents\\simulación\\DatosHistoricoGasolina.xlsx"
+    global contadorMagna, columnaMagna, rutaArchivo
     historico = pd.read_excel(rutaArchivo)
 
     print ("\n PREDICCION DE REGULAR . . .  \n")
@@ -72,8 +73,7 @@ def simulacionesMonteCarloReg(idGasolinera, ano, mes):
 
 
 def entrenarRF_reg():
-
-    rutaArchivo = "C:\\Users\\q\\Documents\\simulación\\DatosHistoricoGasolina.xlsx"
+    global rutaArchivo
     historico = pd.read_excel(rutaArchivo)
     historicoReg = historico.drop(columns=["municipio","permiso", "precio_premium", "precio_disel", "IEPS_prem", "IEPS_dis" ])
 
@@ -114,8 +114,7 @@ def predecirRF_Reg(predArray):
 def simulacionesMonteCarloPrem(idGasolinera, ano, mes):
 
     print ("\n PREDICCION DE PREMIUM. . . \n")
-    global contadorPremium, columnaPremium
-    rutaArchivo = "C:\\Users\\q\\Documents\\simulación\\DatosHistoricoGasolina.xlsx"
+    global contadorPremium, columnaPremium, rutaArchivo
     historico = pd.read_excel(rutaArchivo)
 
     idGasP = idGasolinera
@@ -159,7 +158,7 @@ def simulacionesMonteCarloPrem(idGasolinera, ano, mes):
 
 def entrenarRF_Prem():
 
-    rutaArchivo = "C:\\Users\\q\\Documents\\simulación\\DatosHistoricoGasolina.xlsx"
+    global rutaArchivo
     historico = pd.read_excel(rutaArchivo)
     historicoReg = historico.drop(columns=["municipio","permiso", "precio_magna", "precio_disel", "IEPS_reg", "IEPS_dis" ])
 
@@ -204,8 +203,7 @@ def simulacionesMonteCarloDies(idGasolinera, ano, mes):
 
     print ("n PREDICCION DE DIESEL . . . \n" )
 
-    global contadorDies, columnaDiesel
-    rutaArchivo = "C:\\Users\\q\\Documents\\simulación\\DatosHistoricoGasolina.xlsx"
+    global contadorDies, columnaDiesel, rutaArchivo
     historico = pd.read_excel(rutaArchivo)
 
     idGasP = idGasolinera
@@ -250,7 +248,7 @@ def simulacionesMonteCarloDies(idGasolinera, ano, mes):
 
 def entrenarRF_Dies():
 
-    rutaArchivo = "C:\\Users\\q\\Documents\\simulación\\DatosHistoricoGasolina.xlsx"
+    global rutaArchivo
     historico = pd.read_excel(rutaArchivo)
     historicoReg = historico.drop(columns=["municipio","permiso", "precio_magna", "precio_premium", "IEPS_reg", "IEPS_prem" ])
 
