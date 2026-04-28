@@ -60,7 +60,7 @@ async function estimar() {
  
     try {
         // appSimulacion.py recibe: id_gas, ano, mes, tipo
-        const url = `http://localhost:5000/getUserData?id_gas=${id}&ano=${year}&mes=${mes}&tipo=${tipoGas}`;
+        const url = `http://localhost:5001/getUserData?id_gas=${id}&ano=${year}&mes=${mes}&tipo=${tipoGas}`;
         const resp = await fetch(url);
         const data = await resp.json();
  
