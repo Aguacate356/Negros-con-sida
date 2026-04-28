@@ -351,7 +351,10 @@
         }
       }
     });
-  </script>
+    
+  </script>// Proteger dashboard - redirigir si no hay sesión
+const session = JSON.parse(sessionStorage.getItem('gasSession'));
+if (!session) window.location.href = 'login.html';
 
 </body>
 </html>
