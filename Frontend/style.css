@@ -573,45 +573,6 @@ body {
   letter-spacing: -0.02em;
 }
 
-.est-cmd-box {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 12px 14px;
-  margin-top: 16px;
-}
-
-.est-cmd-label {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  margin-bottom: 6px;
-}
-
-.est-cmd-text {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--color-blue);
-  word-break: break-all;
-  line-height: 1.6;
-}
-
-.est-copy-btn {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 4px 10px;
-  margin-top: 8px;
-  background: transparent;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  color: var(--muted);
-  cursor: pointer;
-  transition: border-color 0.15s, color 0.15s;
-}
 
 .est-copy-btn:hover {
   border-color: var(--border-hover);

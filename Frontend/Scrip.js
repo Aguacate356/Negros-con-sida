@@ -87,10 +87,5 @@ async function estimar() {
     }
 }
  
-function copiarCmd() {
-    navigator.clipboard.writeText(document.getElementById("cmdText").textContent).catch(() => {});
-    const btn = document.querySelector(".est-copy-btn");
-    btn.textContent = "¡Copiado!";
-    setTimeout(() => btn.textContent = "Copiar comando", 2000);
-}
+
  
