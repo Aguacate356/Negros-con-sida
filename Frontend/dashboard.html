@@ -20,6 +20,17 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12l4-4 4 4"/></svg>
         Estimar precio
       </a>
+      <div class="user-chip">
+        <div class="user-avatar" id="userAvatar">?</div>
+        <div class="user-info">
+          <span class="user-name" id="userName">—</span>
+          <span class="user-email" id="userEmail">—</span>
+        </div>
+      </div>
+      <a class="nav-btn nav-btn--logout" href="login.html" onclick="sessionStorage.removeItem('gasSession')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Cerrar sesión
+      </a>
     </div>
   </header>
 
@@ -199,6 +210,20 @@
   </main>
 
   <script>
+    // Proteger dashboard - redirigir si no hay sesión
+    const _session = JSON.parse(sessionStorage.getItem('gasSession'));
+    if (!_session) window.location.href = 'login.html';
+
+    // Mostrar datos del usuario en el header
+    if (_session) {
+      const name  = _session.name  || _session.email || '—';
+      const email = _session.email || '';
+      document.getElementById('userName').textContent  = name;
+      document.getElementById('userEmail').textContent = email;
+      // Inicial del avatar
+      document.getElementById('userAvatar').textContent = name.charAt(0).toUpperCase();
+    }
+
     const YEARS = [2020, 2021, 2022, 2023, 2024];
     const MONTHS = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
     const MUNICIPIOS = ['Apodaca','Aramberri','Galeana','García','Gral. Escobedo','Guadalupe','Juárez','Montemorelos','Monterrey','Sta. Catarina'];
@@ -352,9 +377,7 @@
       }
     });
     
-  </script>// Proteger dashboard - redirigir si no hay sesión
-const session = JSON.parse(sessionStorage.getItem('gasSession'));
-if (!session) window.location.href = 'login.html';
+  </script>
 
 </body>
 </html>
